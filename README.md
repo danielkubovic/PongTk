@@ -1,8 +1,8 @@
 # pongtk
-Pong game written in tkinter
+Pong game written in Tkinter
 
-Why not use pygame or some other library which is more suitable for creating a game?
--I simply wanted to learn tkinter, since it's the standard python library.
+<b>Why not use pygame?<b>
+I simply wanted to learn tkinter, since it's the standard GUI Python library.
 
-Known bugs/issues:
+Known bugs:
 -When the paddle is moving towards the ball it's increasing more score then it should
