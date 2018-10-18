@@ -21,16 +21,19 @@ class Paddle:
             lambda event, arg=("x"): self.move(event, arg, self.speed * (-1)))
             self.canvas.bind_all('<KeyRelease-Left>', self.stop_left)
         if paddle_position[2] < game.window_width:
-            self.canvas.bind_all('<KeyPress-Right>', lambda event, arg=("x"): self.move(event, arg, self.speed))
+            self.canvas.bind_all('<KeyPress-Right>', lambda event, arg=("x"):
+									self.move(event, arg, self.speed))
             self.canvas.bind_all('<KeyRelease-Right>', self.stop_right)
         if paddle_position[1] > 0:
-            self.canvas.bind_all('<KeyPress-Up>', lambda event, arg=("y"): self.move(event, arg, self.speed * (-1)))
+            self.canvas.bind_all('<KeyPress-Up>', lambda event, arg=("y"):
+									self.move(event, arg, self.speed * (-1)))
             self.canvas.bind_all('<KeyRelease-Up>', self.stop_up)
         if paddle_position[3] < game.window_width:
-            self.canvas.bind_all('<KeyPress-Down>', lambda event, arg=("y"): self.move(event, arg, self.speed))
+            self.canvas.bind_all('<KeyPress-Down>', lambda event,
+								arg=("y"): self.move(event, arg, self.speed))
             self.canvas.bind_all('<KeyRelease-Down>', self.stop_down)
         # If paddle is touching the edge of canvas, disable that movement button
-        if paddle_position[1] <= 0:
+        if paddle_position[1] <= game.window_ycenter:
             self.yspeed = 0
             self.canvas.unbind_all('<KeyPress-Up>')
         if paddle_position[3] >= game.window_height:
