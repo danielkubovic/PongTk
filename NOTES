@@ -1,0 +1,22 @@
+BUGS:
+
+Sound - parallel computing?
+
+TODO:
+
+Second paddle
+COOP
+Better Play again
+Scale canvas with resizing window
+Menu - singleplayer, coop, multiplayer, options, quit
+Player name
+Options - fullscreen, resolution, sound levels, color(ball, background), speed(paddle, ball),
+        control paddle or ball, paddle will stop on walls or port to other wall
+Controls - bindings, play with mouse
+Best score - per session, per player, all time
+statistics - no. balls hit, no. paddles hit, no. bricks hit,
+            no. last level played (that player reached), no. sessions
+Difficulty - insane(changing stuff all the time - speed, controling ball or paddle, portal or normal walls)
+Levels (with bricks)
+Achievements - for getting ball between bricks, reaching high score
+Multiplayer
