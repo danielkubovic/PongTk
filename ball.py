@@ -34,7 +34,7 @@ class Ball:
             self.player_score += 1
             game.canvas.itemconfig(game.score, text='Score: '
                                     + str(self.player_score))
-            winsound.PlaySound('sound\hit.wav', winsound.SND_ASYNC)
+            winsound.PlaySound('sound/hit.wav', winsound.SND_ASYNC)
 
     def hit_paddle(self, ball_position):
         paddle_pos = self.canvas.coords(self.paddle.id)
