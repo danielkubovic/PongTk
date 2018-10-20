@@ -48,7 +48,7 @@ class Pong:
                                    font=('Helvetica', 18))
         try_again.place(x=game.window_xcenter,
 						y=game.window_ycenter + 40,
-						anchor=tkinter.CENTER)
+						asnchor=tkinter.CENTER)
         root.update_idletasks()
 
 
