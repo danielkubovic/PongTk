@@ -1,47 +1,57 @@
 #!/usr/bin/env python3
 
-import random
 import winsound
 from game import *
 from paddle import *
+from left_paddle import *
+from right_paddle import *
+from score import *
 
 class Ball:
 
-    def __init__(self, canvas, color, size, paddle):
+    def __init__(self, x, y, color, canvas, left_paddle, right_paddle):
         self.canvas = canvas
-        self.paddle = paddle
-        self.id = canvas.create_oval(0, 0, size, size, fill=color)
-        self.canvas.move(self.id, 245, 100)
-        self.xspeed = random.randrange(-3,3)
-        self.yspeed = -3
-        self.player_score = 0
-        self.hit_bottom = False
+        self.left_paddle = left_paddle
+        self.right_paddle = right_paddle
+        self.id = canvas.create_oval(0, 0, x, y, fill=color)
+        self.canvas.move(self.id, game.window_xcenter, game.window_ycenter)
+        self.xspeed = -5
+        self.yspeed = -5
 
     def draw(self):
-        self.canvas.move(self.id, self.xspeed, self.yspeed)
+        self.canvas.move(self.id, self.xspeed, self. yspeed)
         ball_position = self.canvas.coords(self.id)
         if ball_position[1] <= 0:
-            self.yspeed = 3
+            self.yspeed *= -1
         if ball_position[3] >= game.window_height:
-            self.hit_bottom = True
+            self.yspeed *= -1
         if ball_position[0] <= 0:
-            self.xspeed = 3
+            self.xspeed *= -1
+            score.player2 += 1
+            game.canvas.itemconfig(score.board_player2,
+                                    text = str(score.player2))
         if ball_position[2] >= game.window_width:
-            self.xspeed = -3
-        if self.hit_paddle(ball_position) == True:
-            self.yspeed = -3
-            self.xspeed = random.randrange(-3,3)
-            self.player_score += 1
-            game.canvas.itemconfig(game.score, text='Score: '
-                                    + str(self.player_score))
-            winsound.PlaySound('sound/hit.wav', winsound.SND_ASYNC)
+            self.xspeed *= -1
+            score.player1 += 1
+            game.canvas.itemconfig(score.board_player1,
+                                    text = str(score.player1))
 
-    def hit_paddle(self, ball_position):
-        paddle_pos = self.canvas.coords(self.paddle.id)
-        if ball_position[2] >= paddle_pos[0] and ball_position[0] <= paddle_pos[2]:
-            if ball_position[3] >= paddle_pos[1] and ball_position[3] <= paddle_pos[3]:
-                return True
-        return False
+        if self.hit_paddle(ball_position):
+            self.xspeed *= -1
+            winsound.PlaySound('sound\hit.wav', winsound.SND_ASYNC)
+
+        if score.player1 is 10 or score.player2 is 10:
+            game.end = True
+
+    def hit_paddle(self, ball_pos):
+        left_paddle_pos = self.canvas.coords(self.left_paddle.id)
+        right_paddle_pos = self.canvas.coords(self.right_paddle.id)
+
+        if ball_pos[1] >= left_paddle_pos[1] and ball_pos[3] <= left_paddle_pos[3] and ball_pos[0] <= left_paddle_pos[2] and ball_pos[0] >= left_paddle_pos[0]:
+            return True
+
+        if ball_pos[1] >= right_paddle_pos[1] and ball_pos[3] <= right_paddle_pos[3] and ball_pos[2] >= right_paddle_pos[0] and ball_pos[2] <= right_paddle_pos[2]:
+            return True
 
 
-ball = Ball(game.canvas, 'red', 15, paddle)
+ball = Ball(15, 15, 'red', game.canvas, left_paddle, right_paddle)
