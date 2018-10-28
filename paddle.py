@@ -2,6 +2,7 @@
 
 from game import *
 
+
 class Paddle:
 
     def __init__(self, x, y, width, height, canvas, color):
@@ -10,3 +11,4 @@ class Paddle:
         self.canvas.move(self.id, x, y)
         self.active_speed = 2
         self.speed = 0
+
