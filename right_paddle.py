@@ -41,7 +41,7 @@ class RightPaddle(Paddle):
             self.speed = 0
 
 
-right_paddle = RightPaddle(game.window_xthreequarters * 1.3,
+right_paddle = RightPaddle(game.window_width - 10,
                            game.window_ycenter-game.window_yquarter // 3,
                            10, 100, game.canvas, 'blue')
 

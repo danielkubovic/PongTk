@@ -23,9 +23,7 @@ class Ball:
     def draw(self):
         self.canvas.move(self.id, self.xspeed, self. yspeed)
         ball_position = self.canvas.coords(self.id)
-        if ball_position[1] <= 0:
-            self.yspeed *= -1
-        if ball_position[3] >= game.window_height:
+        if ball_position[1] <= 0 or ball_position[3] >= game.window_height:
             self.yspeed *= -1
         if ball_position[0] <= 0:
             self.xspeed *= -1
@@ -42,7 +40,7 @@ class Ball:
             self.xspeed *= -1
             winsound.PlaySound('sound\hit.wav', winsound.SND_ASYNC)
 
-        if score.player1 is 10 or score.player2 is 10:
+        if score.player1 is score.final or score.player2 is score.final:
             game.canvas.delete(score.board_player1, score.board_player2,
                                score.board)
             game.end = True
@@ -53,15 +51,14 @@ class Ball:
 
         if ball_pos[1] >= left_paddle_pos[1] \
            and ball_pos[3] <= left_paddle_pos[3] \
-           and ball_pos[0] <= left_paddle_pos[2] \
-           and ball_pos[0] >= left_paddle_pos[0]:
+           and ball_pos[0] <= left_paddle_pos[2]:
             return True
 
         if ball_pos[1] >= right_paddle_pos[1] \
            and ball_pos[3] <= right_paddle_pos[3] \
-           and ball_pos[2] >= right_paddle_pos[0] \
-           and ball_pos[2] <= right_paddle_pos[2]:
+           and ball_pos[2] >= right_paddle_pos[0]:
             return True
 
 
 ball = Ball(15, 15, 'red', game.canvas, left_paddle, right_paddle)
+

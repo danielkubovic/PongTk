@@ -41,7 +41,6 @@ class LeftPaddle(Paddle):
             self.speed = 0
 
 
-left_paddle = LeftPaddle(game.window_xquarter // 2,
-                         game.window_ycenter-game.window_yquarter // 2,
+left_paddle = LeftPaddle(0 , game.window_ycenter-game.window_yquarter // 2,
                          10, 100, game.canvas, 'green')
 
