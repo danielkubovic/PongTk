@@ -5,4 +5,4 @@ Pong game written in Tkinter.
 
 I simply wanted to learn tkinter, since it's the standard GUI Python library.
 
-<img src="sample.jpg" alt="Sample picture">
+<img src="sample.png" alt="Sample picture">
