@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import winsound
+#import winsound
 
 from game import *
 from paddle import *
@@ -38,7 +38,7 @@ class Ball:
 
         if self.hit_paddle(ball_position):
             self.xspeed *= -1
-            winsound.PlaySound('sound\hit.wav', winsound.SND_ASYNC)
+            #winsound.PlaySound('sound\hit.wav', winsound.SND_ASYNC)
 
         if score.player1 is score.final or score.player2 is score.final:
             game.canvas.delete(score.board_player1, score.board_player2,
